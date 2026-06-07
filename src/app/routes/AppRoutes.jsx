@@ -1,8 +1,10 @@
 import React from 'react'
 import {createBrowserRouter, RouterProvider} from 'react-router'
 import AuthLayout from '../layouts/AuthLayout'
-import Login from '../../features/auth/ui/Login'
-import Register from '../../features/auth/ui/Register'
+import Login from '../../features/auth/ui/pages/Login'
+import Register from '../../features/auth/ui/pages/Register'
+import DashBoardLayout from '../layouts/DashBoardLayout'
+import Home from '../../features/dashboard/ui/pages/Home'
 const AppRoutes = () => {
     let router = createBrowserRouter([
         {
@@ -18,9 +20,19 @@ const AppRoutes = () => {
                     element: <Register/>
                 }
             ]
+        },
+        {
+            path:"/home",
+            element : <DashBoardLayout/>,
+            children : [
+                {
+                    path : "",
+                    element : <Home/>
+                }
+            ]
         }
     ])
-  return <RouterProvider/>
+  return <RouterProvider router={router}/>
 }
 
 export default AppRoutes
